@@ -1,37 +1,15 @@
 import React from 'react';
-import Layout from '../../components/Layout/Layout';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 
-const Signup = () => {
+const SignIn = () => {
   return (
     <Layout>
       <Container>
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
             <Form>
-              <Row>
-                <Col md={6}>
-                  <Input
-                    label="First Name"
-                    placeholder="First name"
-                    value=""
-                    type="text"
-                    onChange={() => {}}
-                  />
-                </Col>
-
-                <Col md={6}>
-                  <Input
-                    label="Last Name"
-                    placeholder="Last name"
-                    value=""
-                    type="text"
-                    onChange={() => {}}
-                  />
-                </Col>
-              </Row>
-
               <Input
                 label="Email"
                 placeholder="Email"
@@ -59,4 +37,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignIn;
