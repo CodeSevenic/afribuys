@@ -3,14 +3,14 @@ const bcrypt = require('bcrypt');
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
+    name: {
       type: String,
       required: true,
       trim: true,
       min: 3,
       max: 20,
     },
-    lastName: {
+    surname: {
       type: String,
       required: true,
       trim: true,
@@ -53,7 +53,7 @@ userSchema.virtual('password').set(function (password) {
 });
 
 userSchema.virtual('fullName').get(function () {
-  return `${this.firstName} ${this.lastName}`;
+  return `${this.name} ${this.surname}`;
 });
 
 userSchema.methods = {

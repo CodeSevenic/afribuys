@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 const Input = (props) => {
   return (
-    <Form.Group controlId="formBasicEmail">
+    <Form.Group controlId={props.controlId}>
       <Form.Label>{props.label}</Form.Label>
       <Form.Control
         type={props.type}

@@ -8,10 +8,10 @@ exports.signup = (req, res) => {
         message: 'Admin already registered',
       });
 
-    const { firstName, lastName, email, password } = req.body;
+    const { name, surname, email, password } = req.body;
     const _user = new User({
-      firstName,
-      lastName,
+      name,
+      surname,
       email,
       password,
       username: Math.random().toString(),
@@ -42,13 +42,13 @@ exports.signin = (req, res) => {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: '1h',
         });
-        const { _id, firstName, lastName, email, role, fullName } = user;
+        const { _id, name, surname, email, role, fullName } = user;
         res.status(200).json({
           token,
           user: {
             _id,
-            firstName,
-            lastName,
+            name,
+            surname,
             email,
             role,
             fullName,
@@ -56,19 +56,11 @@ exports.signin = (req, res) => {
         });
       } else {
         return res.status(400).json({
-          message: 'Invalid Password',
+          message: 'Invalid email or Password',
         });
       }
     } else {
       return res.status(400).json({ message: 'Something went wrong!' });
     }
   });
-};
-
-exports.requireSignin = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  req.user = user;
-  console.log(token);
-  next();
 };
