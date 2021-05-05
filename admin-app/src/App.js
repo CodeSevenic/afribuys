@@ -1,12 +1,12 @@
 import './App.css';
-import { Jumbotron } from 'react-bootstrap';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
     <div className="App">
-      <Jumbotron>
-        <h1>Admin Dashboard</h1>
-      </Jumbotron>
+      <Layout>
+        <h1>Hello World</h1>
+      </Layout>
     </div>
   );
 }
