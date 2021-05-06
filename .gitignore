@@ -8,6 +8,8 @@ afribuys-front-end/node_modules
 .pnp.js
 .env
 afribuys-backend/.env
+afribuys-backend/uploads
+afribuys-backend/src/uploads
 afribuys-front-end/.env
 
 # testing
