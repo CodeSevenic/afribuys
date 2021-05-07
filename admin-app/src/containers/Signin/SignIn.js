@@ -5,12 +5,18 @@ import Input from '../../components/UI/Input/Input';
 import { login } from '../../actions/actionsIndex';
 
 const SignIn = () => {
+  const userLogin = (e) => {
+    e.preventDefault();
+    const user = { email: 'test@test.com', password: '123456' };
+    login(user);
+  };
+
   return (
     <Layout>
       <Container>
         <Row style={{ marginTop: '50px' }}>
           <Col md={{ span: 6, offset: 3 }}>
-            <Form>
+            <Form onSubmit={userLogin}>
               <Input
                 label="Email"
                 placeholder="Email"
