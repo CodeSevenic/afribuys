@@ -2,6 +2,7 @@ const express = require('express');
 const env = require('dotenv').config();
 const app = express();
 const mongoose = require('mongoose');
+const path = require('path');
 
 // routes
 const userRoutes = require('./routes/authRoutes');
@@ -12,6 +13,7 @@ const cartRoutes = require('./routes/cartRoutes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/public', express.static(path.join(__dirname, 'uploads')));
 
 // mongodb connection
 const DB = process.env.DATABASE.replace(
