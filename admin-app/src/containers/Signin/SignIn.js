@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
+import { login } from '../../actions/actionsIndex';
 
 const SignIn = () => {
   return (
