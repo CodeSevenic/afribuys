@@ -60,7 +60,7 @@ exports.signin = (req, res) => {
         });
       } else {
         return res.status(400).json({
-          message: 'Invalid email or Password',
+          message: 'Invalid admin email or Password',
         });
       }
     } else {
