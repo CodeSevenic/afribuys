@@ -21,7 +21,7 @@ exports.addItemToCart = async (req, res) => {
         ).exec((error, _cart) => {
           if (error) return res.status(400).json({ error });
           if (_cart) {
-            return res.status(201).json({ _cart });
+            return res.status(201).json({ cart: _cart });
           }
         });
       } else {
