@@ -28,3 +28,18 @@ export const login = (user) => {
     }
   };
 };
+
+export const isUserLoggedIn = () => {
+  return async (dispatch) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      dispatch({
+        payload: { token },
+      });
+    } else {
+      dispatch({
+        payload: { authenticate: false, message: 'User Not Logged In' },
+      });
+    }
+  };
+};
