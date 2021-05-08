@@ -23,6 +23,7 @@ export const loginReducer = (state = initialState, action) => {
         user: action.payload.user,
         token: action.payload.token,
         authenticate: true,
+        authenticating: false,
       };
 
     default:
