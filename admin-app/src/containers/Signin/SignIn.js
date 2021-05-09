@@ -16,7 +16,7 @@ const SignIn = () => {
 
   useEffect(() => {
     if (!loginState.authenticate) {
-      dispatch(isUserLoggedIn);
+      dispatch(isUserLoggedIn());
     }
   }, [dispatch, loginState.authenticate]);
 
