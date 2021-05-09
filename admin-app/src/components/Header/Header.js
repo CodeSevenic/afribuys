@@ -1,11 +1,40 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
+  const loginState = useSelector((state) => state.loginState);
+
+  const renderLoggedInLinks = () => {
+    return (
+      <Nav>
+        <li className="nav-item">
+          <span className="nav-link">Logout</span>
+        </li>
+      </Nav>
+    );
+  };
+
+  const renderNonLoggedInLinks = () => {
+    return (
+      <Nav>
+        <li className="nav-item">
+          <Link className="nav-link" to="/signin">
+            Sign In
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/signup" className="nav-link">
+            Sign Up
+          </Link>
+        </li>
+      </Nav>
+    );
+  };
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
+      <Container fluid>
         <Link to="/" className="navbar-brand">
           Admin Dashboard
         </Link>
@@ -24,18 +53,9 @@ const Header = () => {
               </NavDropdown.Item>
             </NavDropdown> */}
           </Nav>
-          <Nav>
-            <li className="nav-item">
-              <Link className="nav-link" to="/signin">
-                Sign In
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/signup" className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </Nav>
+          {loginState.authenticate
+            ? renderLoggedInLinks()
+            : renderNonLoggedInLinks()}
         </Navbar.Collapse>
       </Container>
     </Navbar>

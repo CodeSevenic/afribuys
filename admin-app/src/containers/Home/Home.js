@@ -1,11 +1,23 @@
 import React from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import './Home.css';
+import { Col, Container, Row } from 'react-bootstrap';
 import Layout from '../../components/Layout/Layout';
 
 const Home = () => {
   return (
     <Layout>
-      <Jumbotron
+      <Container fluid>
+        <Row>
+          <Col md={2} className="sidebar">
+            Side bar
+          </Col>
+          <Col md={10} style={{ marginLeft: 'auto' }}>
+            Container
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <Jumbotron
         style={{ margin: '5rem', background: '#fff' }}
         className="text-center"
       >
@@ -16,7 +28,7 @@ const Home = () => {
           qui consequuntur, magnam quia minima magni amet dignissimos quibusdam,
           saepe nulla? Impedit!
         </p>
-      </Jumbotron>
+      </Jumbotron> */}
     </Layout>
   );
 };
