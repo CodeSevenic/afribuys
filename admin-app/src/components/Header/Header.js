@@ -1,16 +1,24 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signout } from '../../actions/actionsIndex';
 
 const Header = (props) => {
   const loginState = useSelector((state) => state.loginState);
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(signout());
+  };
 
   const renderLoggedInLinks = () => {
     return (
       <Nav>
         <li className="nav-item">
-          <span className="nav-link">Logout</span>
+          <span className="nav-link" onClick={logout}>
+            Logout
+          </span>
         </li>
       </Nav>
     );

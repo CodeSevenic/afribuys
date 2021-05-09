@@ -25,6 +25,8 @@ export const loginReducer = (state = initialState, action) => {
         authenticate: true,
         authenticating: false,
       };
+    case authConstants.LOGOUT_REQUEST:
+      return { ...initialState };
 
     default:
       return state;
