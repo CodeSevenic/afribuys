@@ -13,6 +13,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const loginState = useSelector((state) => state.loginState);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
 
@@ -29,6 +30,10 @@ const Signup = () => {
 
   if (loginState.authenticate) {
     return <Redirect to={'/'} />;
+  }
+
+  if (user.loading) {
+    return <p>Loading...!</p>;
   }
 
   return (
