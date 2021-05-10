@@ -8,6 +8,7 @@ export const signup = (user) => {
     const res = await axiosInstance.post('/admin/signup', {
       ...user,
     });
+    console.log(res);
     if (res.status === 201) {
       const { message } = res.data;
 
