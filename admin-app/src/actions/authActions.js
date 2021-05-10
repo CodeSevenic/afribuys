@@ -45,7 +45,7 @@ export const isUserLoggedIn = () => {
     } else {
       dispatch({
         type: authConstants.LOGIN_FAILURE,
-        payload: { error: 'Failed to login' },
+        payload: { error: 'User logged out' },
       });
     }
   };
