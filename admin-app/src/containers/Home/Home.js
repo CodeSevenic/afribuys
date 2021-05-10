@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css';
 import { Col, Container, Row } from 'react-bootstrap';
 import Layout from '../../components/Layout/Layout';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -9,7 +10,17 @@ const Home = () => {
       <Container fluid>
         <Row>
           <Col md={2} className="sidebar">
-            Side bar
+            <ul>
+              <li>
+                <NavLink to="/">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/products">Products</NavLink>
+              </li>
+              <li>
+                <NavLink to="/orders">Orders</NavLink>
+              </li>
+            </ul>
           </Col>
           <Col md={10} style={{ marginLeft: 'auto' }}>
             Container

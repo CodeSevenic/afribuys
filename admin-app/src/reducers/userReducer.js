@@ -7,7 +7,6 @@ const initialState = {
 };
 
 export const userReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case userConstants.USER_REGISTER_REQUEST:
       return { ...state, loading: true };

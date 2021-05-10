@@ -7,6 +7,8 @@ import Signup from './containers/Signup/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { isUserLoggedIn } from './actions/authActions';
+import Products from './containers/Products/Products';
+import Orders from './containers/Orders/Orders';
 
 function App() {
   const loginState = useSelector((state) => state.loginState);
@@ -23,6 +25,9 @@ function App() {
     <div className="App">
       <Switch>
         <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute path="/products" component={Products} />
+        <PrivateRoute path="/orders" component={Orders} />
+
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={Signup} />
       </Switch>
