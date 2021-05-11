@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCategory } from '../../actions/actionsIndex';
+import { addCategory, getAllCategory } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 
@@ -25,7 +25,7 @@ const Category = () => {
     form.append('name', categoryName);
     form.append('parentId', parentCategoryId);
     form.append('categoryImage', categoryImage);
-
+    dispatch(addCategory(form));
     setShow(false);
   };
   const handleShow = () => setShow(true);
