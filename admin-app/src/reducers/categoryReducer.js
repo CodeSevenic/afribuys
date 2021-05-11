@@ -6,22 +6,23 @@ const initialState = {
   error: null,
 };
 
-const buildNewCategories = (id, categories, category) => {
+const buildNewCategories = (parentId, categories, category) => {
   let myCategories = [];
 
   for (let cat of categories) {
-    if (cat.parentId && cat.parentId === id) {
+    if (cat._id === parentId) {
       myCategories.push({
         ...cat,
         children:
           cat.children && cat.children.length > 0
             ? buildNewCategories(
-                id,
+                parentId,
                 [
                   ...cat.children,
                   {
                     _id: category._id,
                     name: category.name,
+                    slug: category.slug,
                     parentId: category.parentId,
                     children: category.children,
                   },
@@ -35,7 +36,7 @@ const buildNewCategories = (id, categories, category) => {
         ...cat,
         children:
           cat.children && cat.children.length > 0
-            ? buildNewCategories(id, cat.children, category)
+            ? buildNewCategories(parentId, cat.children, category)
             : [],
       });
     }
@@ -55,13 +56,16 @@ export const categoryReducer = (state = initialState, action) => {
     case categoryConstants.ADD_NEW_CATEGORY_REQUEST:
       return { ...state, loading: true };
     case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
+      const category = action.payload.category;
       const updatedCategories = buildNewCategories(
+        category.parentId,
         state.categories,
-        action.payload.category
+        category
       );
-      console.log(updatedCategories);
+      console.log('UPDATED CATEGORIES ', updatedCategories);
       return {
         ...state,
+        categories: updatedCategories,
         loading: false,
       };
     case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
