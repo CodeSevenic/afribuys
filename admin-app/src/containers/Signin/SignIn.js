@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
@@ -9,7 +9,7 @@ import { Redirect } from 'react-router';
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const loginState = useSelector((state) => state.loginState);
 
   const dispatch = useDispatch();
