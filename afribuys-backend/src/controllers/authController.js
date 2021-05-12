@@ -1,19 +1,22 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.signup = (req, res) => {
-  User.findOne({ email: req.body.email }).exec((error, user) => {
+  User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
       return res.status(400).json({
         message: 'User already registered',
       });
 
     const { name, surname, email, password } = req.body;
+    const hash_password = await bcrypt.hash(password, 10);
+
     const _user = new User({
       name,
       surname,
       email,
-      password,
+      hash_password,
       username: Math.random().toString(),
     });
 
@@ -42,7 +45,7 @@ exports.signin = (req, res) => {
           { _id: user._id, role: user.role },
           process.env.JWT_SECRET,
           {
-            expiresIn: '1h',
+            expiresIn: '1d',
           }
         );
         const { _id, name, surname, email, role, fullName } = user;
