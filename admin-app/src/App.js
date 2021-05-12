@@ -6,11 +6,10 @@ import SignIn from './containers/Signin/SignIn';
 import Signup from './containers/Signup/Signup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { isUserLoggedIn } from './actions/authActions';
 import Products from './containers/Products/Products';
 import Orders from './containers/Orders/Orders';
 import Category from './containers/Category/Category';
-import { getAllCategory } from './actions/categoryAction';
+import { getInitialData, isUserLoggedIn } from './actions/actionsIndex';
 
 function App() {
   const loginState = useSelector((state) => state.loginState);
@@ -21,7 +20,7 @@ function App() {
     if (!loginState.authenticate) {
       dispatch(isUserLoggedIn());
     }
-    dispatch(getAllCategory());
+    dispatch(getInitialData());
   }, []);
 
   return (
