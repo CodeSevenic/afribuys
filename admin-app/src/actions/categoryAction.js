@@ -30,6 +30,7 @@ export const addCategory = (form) => {
         type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
         payload: { category: res.data.category },
       });
+      // dispatch(getAllCategory());
     } else {
       dispatch({
         type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,

@@ -2,6 +2,7 @@ import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import './Header.css';
 import { signout } from '../../actions/actionsIndex';
 
 const Header = (props) => {
@@ -41,7 +42,13 @@ const Header = (props) => {
     );
   };
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      className="nav_bar"
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      variant="dark"
+    >
       <Container fluid>
         <Link to="/" className="navbar-brand">
           Admin Dashboard
