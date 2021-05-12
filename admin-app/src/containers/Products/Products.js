@@ -82,21 +82,8 @@ const Products = (props) => {
     );
   };
 
-  return (
-    <Layout sidebar>
-      <Container>
-        <Row>
-          <Col md={12}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h3>Product</h3>
-              <button onClick={handleShow}>Add</button>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col>{renderProducts()}</Col>
-        </Row>
-      </Container>
+  const renderAddProductModel = () => {
+    return (
       <NewModal
         show={show}
         modalTitle="Add New Product"
@@ -149,6 +136,25 @@ const Products = (props) => {
           onChange={handleProductPictures}
         />
       </NewModal>
+    );
+  };
+
+  return (
+    <Layout sidebar>
+      <Container>
+        <Row>
+          <Col md={12}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h3>Product</h3>
+              <button onClick={handleShow}>Add</button>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>{renderProducts()}</Col>
+        </Row>
+      </Container>
+      {renderAddProductModel()}
     </Layout>
   );
 };
