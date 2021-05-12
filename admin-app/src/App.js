@@ -10,6 +10,7 @@ import { isUserLoggedIn } from './actions/authActions';
 import Products from './containers/Products/Products';
 import Orders from './containers/Orders/Orders';
 import Category from './containers/Category/Category';
+import { getAllCategory } from './actions/categoryAction';
 
 function App() {
   const loginState = useSelector((state) => state.loginState);
@@ -20,7 +21,8 @@ function App() {
     if (!loginState.authenticate) {
       dispatch(isUserLoggedIn());
     }
-  }, [dispatch, loginState.authenticate]);
+    dispatch(getAllCategory());
+  }, []);
 
   return (
     <div className="App">
