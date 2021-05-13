@@ -182,7 +182,7 @@ const Products = (props) => {
           </Col>
           <Col md="6">
             <label className="key">Category</label>
-            <p className="value">--</p>
+            <p className="value">{productDetails.category.name}</p>
           </Col>
         </Row>
         <Row>
