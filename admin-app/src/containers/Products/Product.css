@@ -1,0 +1,10 @@
+.key {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.value {
+  font-size: 12px;
+  font-family: sans-serif;
+}
