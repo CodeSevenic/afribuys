@@ -5,6 +5,7 @@ import { addProduct } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 import NewModal from '../../components/UI/Modal/Modal';
+import { generatePublicUrl } from '../../urlConfig';
 import './Product.css';
 
 const Products = (props) => {
@@ -182,6 +183,24 @@ const Products = (props) => {
           <Col md="6">
             <label className="key">Category</label>
             <p className="value">--</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="12">
+            <label className="key">Description</label>
+            <p className="value">{productDetails.description}</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <label className="key">Product Pictures</label>
+            <div style={{ display: 'flex' }}>
+              {productDetails.productPictures.map((picture) => (
+                <div className="productImgContainer">
+                  <img src={generatePublicUrl(picture.img)} alt="Product" />
+                </div>
+              ))}
+            </div>
           </Col>
         </Row>
       </NewModal>
