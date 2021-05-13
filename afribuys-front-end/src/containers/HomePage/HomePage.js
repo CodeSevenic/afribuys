@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
-import MenuHeader from '../MenuHeader/MenuHeader';
+import MenuHeader from '../../components/MenuHeader/MenuHeader';
 
 const HomePage = (props) => {
   return (
