@@ -77,7 +77,7 @@ const Products = (props) => {
                   <td>{product.name}</td>
                   <td>{product.price}</td>
                   <td>{product.quantity}</td>
-                  <td>--</td>
+                  <td>{product.category.name}</td>
                 </tr>
               ))
             : null}
