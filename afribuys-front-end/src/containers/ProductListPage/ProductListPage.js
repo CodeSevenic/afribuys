@@ -29,12 +29,12 @@ const ProductListPage = (props) => {
               />
             </div>
             <div className="productInfo">
-              <div>Samsung 4gb phone</div>
+              <div className="productTitle">Samsung 4gb phone</div>
               <div>
                 <span>4.3</span>&nbsp;
                 <span>3353</span>
               </div>
-              <div>5000</div>
+              <div className="productPrice">5000</div>
             </div>
           </div>
         </div>
