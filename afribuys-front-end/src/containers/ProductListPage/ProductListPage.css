@@ -14,6 +14,7 @@
 
 .productContainer {
   width: 200px;
+  margin: 0 10px;
 }
 
 .productContainer .productImgContainer {
@@ -21,7 +22,7 @@
   height: 150px;
   overflow: hidden;
   text-align: center;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .productContainer .productImgContainer img {
@@ -42,4 +43,8 @@
 
 .productTitle {
   margin: 5px 0;
+}
+
+.productContent {
+  display: flex;
 }

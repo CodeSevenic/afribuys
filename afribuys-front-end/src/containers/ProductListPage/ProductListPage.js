@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getProductBySlug } from '../../actions/productAction';
 import Layout from '../../components/Layout/Layout';
+import { generatePublicUrl } from '../../urlConfig';
 import './ProductListPage.css';
 
 const ProductListPage = (props) => {
+  const product = useSelector((state) => state.product);
+  const [priceRange, setPriceRange] = useState({
+    under5k: 5000,
+    under10k: 10000,
+    under15k: 15000,
+    under20k: 20000,
+    under30k: 30000,
+  });
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,30 +24,38 @@ const ProductListPage = (props) => {
 
   return (
     <Layout>
-      <div className="card">
-        <div className="cardHeader">
-          <div>Samsung Mobile Under 10k</div>
-          <button>view all</button>
-        </div>
-        <div>
-          <div className="productContainer">
-            <div className="productImgContainer">
-              <img
-                src="http://localhost:2000/public/KKvEMah99-411ixwz8URppESrt_phone-3.png"
-                alt="Product"
-              />
-            </div>
-            <div className="productInfo">
-              <div className="productTitle">Samsung 4gb phone</div>
+      {Object.keys(product.productsByPrice).map((key, index) => {
+        return (
+          <div className="card">
+            <div className="cardHeader">
               <div>
-                <span>4.3</span>&nbsp;
-                <span>3353</span>
+                {props.match.params.slug} Mobile Under {priceRange[key]}k
               </div>
-              <div className="productPrice">5000</div>
+              <button>view all</button>
+            </div>
+            <div className="productContent">
+              {product.productsByPrice[key].map((product) => (
+                <div className="productContainer" key={product._id}>
+                  <div className="productImgContainer">
+                    <img
+                      src={generatePublicUrl(product.productPictures[0].img)}
+                      alt="Product"
+                    />
+                  </div>
+                  <div className="productInfo">
+                    <div className="productTitle">{product.name}</div>
+                    <div>
+                      <span>4.3</span>&nbsp;
+                      <span>3353</span>
+                    </div>
+                    <div className="productPrice">{product.price}</div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
     </Layout>
   );
 };
