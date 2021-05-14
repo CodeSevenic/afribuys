@@ -3,7 +3,10 @@ const {
   requireSignin,
   adminMiddleware,
 } = require('../common-middleware/common');
-const { createProduct } = require('../controllers/productController');
+const {
+  createProduct,
+  getProductsBySlug,
+} = require('../controllers/productController');
 const multer = require('multer');
 const shortid = require('shortid');
 const path = require('path');
@@ -27,5 +30,5 @@ router.post(
   upload.array('productPicture'),
   createProduct
 );
-
+router.get('/products/:slug', getProductsBySlug);
 module.exports = router;
