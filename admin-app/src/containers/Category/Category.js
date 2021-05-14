@@ -5,6 +5,8 @@ import { addCategory } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 import NewModal from '../../components/UI/Modal/Modal';
+import CheckboxTree from 'react-checkbox-tree';
+import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 
 const Category = () => {
   const [show, setShow] = useState(false);
