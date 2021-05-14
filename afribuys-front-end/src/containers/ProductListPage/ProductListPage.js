@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getProductBySlug } from '../../actions/productAction';
 import Layout from '../../components/Layout/Layout';
+import './ProductListPage.css';
 
 const ProductListPage = (props) => {
   const dispatch = useDispatch();
