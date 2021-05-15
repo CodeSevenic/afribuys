@@ -305,12 +305,32 @@ const Category = () => {
     );
   };
 
+  const deleteCategory = () => {
+    setDeleteCategoryModal(true);
+  };
+
   const renderDeleteCategoryModal = () => {
     return (
       <NewModal
         modalTitle="Confirm"
         show={deleteCategoryModal}
         handleClose={() => setDeleteCategoryModal(false)}
+        buttons={[
+          {
+            label: 'No',
+            color: 'primary',
+            onclick: () => {
+              alert('no');
+            },
+          },
+          {
+            label: 'Yes',
+            color: 'danger',
+            onclick: () => {
+              alert('yes');
+            },
+          },
+        ]}
       >
         Are you sure
       </NewModal>
@@ -349,7 +369,7 @@ const Category = () => {
         </Row>
         <Row>
           <Col>
-            <button onClick={() => setDeleteCategoryModal(true)}>Delete</button>
+            <button onClick={deleteCategory}>Delete</button>
             <button onClick={updateCategory}>Edit</button>
           </Col>
         </Row>
