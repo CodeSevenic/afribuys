@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategory } from '../../actions/actionsIndex';
+import { addCategory, updateCategories } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 import NewModal from '../../components/UI/Modal/Modal';
@@ -117,11 +117,31 @@ const Category = () => {
     }
   };
 
+  const updateCategoriesForm = () => {
+    const form = new FormData();
+
+    expandedArray.forEach((item, index) => {
+      form.append('_id', item.value);
+      form.append('name', item.name);
+      form.append('parentId', item.parentId ? item.parentId : '');
+    });
+
+    checkedArray.forEach((item, index) => {
+      form.append('_id', item.value);
+      form.append('name', item.name);
+      form.append('parentId', item.parentId ? item.parentId : '');
+    });
+
+    dispatch(updateCategories(form));
+
+    setUpdateCategoryModal(false);
+  };
+
   const renderUpdateCategoriesModal = () => {
     return (
       <NewModal
         show={updateCategoryModal}
-        handleClose={() => setUpdateCategoryModal(false)}
+        handleClose={updateCategoriesForm}
         modalTitle="Update Categories"
         size="lg"
       >
