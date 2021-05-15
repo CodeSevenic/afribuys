@@ -124,12 +124,14 @@ const Category = () => {
       form.append('_id', item.value);
       form.append('name', item.name);
       form.append('parentId', item.parentId ? item.parentId : '');
+      form.append('type', item.type);
     });
 
     checkedArray.forEach((item, index) => {
       form.append('_id', item.value);
       form.append('name', item.name);
       form.append('parentId', item.parentId ? item.parentId : '');
+      form.append('type', item.type);
     });
 
     dispatch(updateCategories(form));

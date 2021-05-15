@@ -61,22 +61,22 @@ exports.updateCategories = async (req, res) => {
   const { _id, name, parentId, type } = req.body;
   const updateCategories = [];
   if (name instanceof Array) {
-    // for (let i = 0; i < name.length; i++) {
-    //   const category = {
-    //     name: name[i],
-    //     type: type[i],
-    //   };
-    //   if (parentId[i] !== '') {
-    //     category.parentId = parentId[i];
-    //   }
-    //   const updatedCategory = await Category.findOneAndUpdate(
-    //     { _id },
-    //     category,
-    //     { new: true }
-    //   );
-    //   updateCategories.push(updatedCategory);
-    // }
-    return res.status(201).json({ updateCategories });
+    for (let i = 0; i < name.length; i++) {
+      const category = {
+        name: name[i],
+        type: type[i],
+      };
+      if (parentId[i] !== '') {
+        category.parentId = parentId[i];
+      }
+      const updatedCategory = await Category.findOneAndUpdate(
+        { _id: _id[i] },
+        category,
+        { new: true }
+      );
+      updateCategories.push(updatedCategory);
+    }
+    return res.status(201).json({ updateCategories: updateCategories });
   } else {
     const category = {
       name,
