@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addCategory,
@@ -29,6 +29,7 @@ const Category = () => {
   const [checkedArray, setCheckedArray] = useState([]);
   const [expandedArray, setExpandedArray] = useState([]);
   const [updateCategoryModal, setUpdateCategoryModal] = useState(false);
+  const [deleteCategoryModal, setDeleteCategoryModal] = useState(false);
 
   const category = useSelector((state) => state.category);
   const dispatch = useDispatch();
@@ -304,6 +305,18 @@ const Category = () => {
     );
   };
 
+  const renderDeleteCategoryModal = () => {
+    return (
+      <NewModal
+        modalTitle="Confirm"
+        show={deleteCategoryModal}
+        handleClose={() => setDeleteCategoryModal(false)}
+      >
+        Are you sure
+      </NewModal>
+    );
+  };
+
   return (
     <Layout sidebar>
       <Container>
@@ -336,13 +349,14 @@ const Category = () => {
         </Row>
         <Row>
           <Col>
-            <button>Delete</button>
+            <button onClick={() => setDeleteCategoryModal(true)}>Delete</button>
             <button onClick={updateCategory}>Edit</button>
           </Col>
         </Row>
       </Container>
       {renderAddCategoryModal()}
       {renderUpdateCategoriesModal()}
+      {renderDeleteCategoryModal()}
     </Layout>
   );
 };
