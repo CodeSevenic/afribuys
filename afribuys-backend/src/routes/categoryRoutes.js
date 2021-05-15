@@ -6,6 +6,7 @@ const {
 const {
   addCategory,
   getCategories,
+  updateCategories,
 } = require('../controllers/categoryController');
 const router = express.Router();
 const multer = require('multer');
@@ -31,5 +32,9 @@ router.post(
   addCategory
 );
 router.get('/category/getcategory', getCategories);
-
+router.post(
+  '/category/update',
+  upload.array('categoryImage'),
+  updateCategories
+);
 module.exports = router;
