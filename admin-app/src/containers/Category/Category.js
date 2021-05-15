@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategory, updateCategories } from '../../actions/actionsIndex';
+import {
+  addCategory,
+  getAllCategory,
+  updateCategories,
+} from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
 import NewModal from '../../components/UI/Modal/Modal';
@@ -134,7 +138,11 @@ const Category = () => {
       form.append('type', item.type);
     });
 
-    dispatch(updateCategories(form));
+    dispatch(updateCategories(form)).then((result) => {
+      if (result) {
+        dispatch(getAllCategory());
+      }
+    });
 
     setUpdateCategoryModal(false);
   };

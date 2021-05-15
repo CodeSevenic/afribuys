@@ -43,7 +43,7 @@ export const updateCategories = (form) => {
   return async (dispatch) => {
     const res = await axiosInstance.post('category/update', form);
     if (res.status === 201) {
-      console.log(res);
+      return true;
     } else {
       console.log(res);
     }
