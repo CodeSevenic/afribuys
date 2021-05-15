@@ -58,5 +58,18 @@ exports.getCategories = (req, res) => {
 };
 
 exports.updateCategories = (req, res) => {
+  const { _id, name, parentId, type } = req.body;
+  if (name instanceof Array) {
+    for (let i = 0; i < name.length; i++) {
+      const category = {
+        name: name[i],
+        type: type[i],
+      };
+      if (parentId !== '') {
+        category.parentId = parentId[i];
+      }
+      Category.findOneAndUpdate({ _id }, category, { new: true });
+    }
+  }
   res.status(200).json({ body: req.body });
 };
