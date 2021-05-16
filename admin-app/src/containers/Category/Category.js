@@ -8,7 +8,6 @@ import {
   deleteCategoriesAction,
 } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
-import Input from '../../components/UI/Input/Input';
 import NewModal from '../../components/UI/Modal/Modal';
 import CheckboxTree from 'react-checkbox-tree';
 import {
@@ -19,6 +18,8 @@ import {
 } from 'react-icons/io';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './components/UpdateCategoriesModal';
+import AddCategoryModal from './components/AddCategoryModal';
+import './Category.css';
 
 const Category = () => {
   const [show, setShow] = useState(false);
@@ -151,39 +152,6 @@ const Category = () => {
     setUpdateCategoryModal(false);
   };
 
-  const renderAddCategoryModal = () => {
-    return (
-      <NewModal
-        show={show}
-        handleClose={handleClose}
-        modalTitle="Add New Category"
-      >
-        <Input
-          value={categoryName}
-          placeholder={`Category Name`}
-          onChange={(e) => setCategoryName(e.target.value)}
-        />
-        <select
-          className="form-control"
-          value={parentCategoryId}
-          onChange={(e) => setParentCategoryId(e.target.value)}
-        >
-          <option>select category</option>
-          {createCategoryList(category.categories).map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.name}
-            </option>
-          ))}
-        </select>
-        <input
-          type="file"
-          name="categoryImage"
-          onChange={handleCategoryImage}
-        />
-      </NewModal>
-    );
-  };
-
   const deleteCategory = () => {
     updateCheckedAndExpandedCategories();
     setDeleteCategoryModal(true);
@@ -242,6 +210,8 @@ const Category = () => {
     );
   };
 
+  const categoryList = createCategoryList(category.categories);
+
   return (
     <Layout sidebar>
       <Container>
@@ -279,6 +249,17 @@ const Category = () => {
           </Col>
         </Row>
       </Container>
+      <AddCategoryModal
+        show={show}
+        handleClose={handleClose}
+        modalTitle="Add New Category"
+        categoryName={categoryName}
+        setCategoryName={setCategoryName}
+        parentCategoryId={parentCategoryId}
+        setParentCategoryId={setParentCategoryId}
+        handleCategoryImage={handleCategoryImage}
+        categoryList={categoryList}
+      />
       <UpdateCategoriesModal
         show={updateCategoryModal}
         handleClose={updateCategoriesForm}
@@ -287,9 +268,9 @@ const Category = () => {
         expandedArray={expandedArray}
         checkedArray={checkedArray}
         handleCategoryInput={handleCategoryInput}
-        categoryList={createCategoryList(category.categories)}
-      ></UpdateCategoriesModal>
-      {renderAddCategoryModal()}
+        categoryList={categoryList}
+      />
+      {/* {renderAddCategoryModal()} */}
       {renderDeleteCategoryModal()}
     </Layout>
   );
