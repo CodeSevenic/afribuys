@@ -16,6 +16,7 @@ const buildNewCategories = (parentId, categories, category) => {
         _id: category._id,
         name: category.name,
         slug: category.slug,
+        type: category.type,
         children: [],
       },
     ];
@@ -28,6 +29,7 @@ const buildNewCategories = (parentId, categories, category) => {
         name: category.name,
         slug: category.slug,
         parentId: category.parentId,
+        type: category.type,
         children: [],
       };
       myCategories.push({
@@ -81,14 +83,14 @@ export const categoryReducer = (state = initialState, action) => {
     case categoryConstants.UPDATE_CATEGORIES_SUCCESS:
       return { ...state, loading: false };
     case categoryConstants.UPDATE_CATEGORIES_FAILURE:
-      return { ...state, error: action.payload.error };
+      return { ...state, error: action.payload.error, loading: false };
 
     case categoryConstants.DELETE_CATEGORIES_REQUEST:
       return { ...state, loading: true };
     case categoryConstants.DELETE_CATEGORIES_SUCCESS:
       return { ...state, loading: false };
     case categoryConstants.DELETE_CATEGORIES_FAILURE:
-      return { ...state, error: action.payload.error };
+      return { ...state, error: action.payload.error, loading: false };
 
     default:
       return state;
