@@ -10,6 +10,7 @@ import Products from './containers/Products/Products';
 import Orders from './containers/Orders/Orders';
 import Category from './containers/Category/Category';
 import { getInitialData, isUserLoggedIn } from './actions/actionsIndex';
+import NewPage from './containers/NewPage/NewPage';
 
 function App() {
   const loginState = useSelector((state) => state.loginState);
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       <Switch>
         <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute path="/page" component={NewPage} />
         <PrivateRoute path="/category" component={Category} />
         <PrivateRoute path="/products" component={Products} />
         <PrivateRoute path="/orders" component={Orders} />
