@@ -15,6 +15,9 @@ import {
   IoIosCheckbox,
   IoIosArrowForward,
   IoIosArrowDown,
+  IoIosAdd,
+  IoIosTrash,
+  IoIosCloudUpload,
 } from 'react-icons/io';
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import UpdateCategoriesModal from './components/UpdateCategoriesModal';
@@ -219,13 +222,26 @@ const Category = () => {
           <Col md={12}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h3>Category</h3>
-              <button onClick={handleShow}>Add</button>
+              <div className="actionBtnContainer">
+                <span>Actions: </span>
+                <button onClick={handleShow}>
+                  <IoIosAdd />
+                  <span>Add</span>
+                </button>
+                <button onClick={deleteCategory}>
+                  <IoIosTrash />
+                  <span>Delete</span>
+                </button>
+                <button onClick={updateCategory}>
+                  <IoIosCloudUpload />
+                  <span>Edit</span>
+                </button>
+              </div>
             </div>
           </Col>
         </Row>
         <Row>
           <Col md={12}>
-            {/* <ul>{renderCategories(category.categories)}</ul> */}
             <CheckboxTree
               nodes={renderCategories(category.categories)}
               checked={checked}
@@ -240,12 +256,6 @@ const Category = () => {
                 expandOpen: <IoIosArrowDown />,
               }}
             />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <button onClick={deleteCategory}>Delete</button>
-            <button onClick={updateCategory}>Edit</button>
           </Col>
         </Row>
       </Container>
