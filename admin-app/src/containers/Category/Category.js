@@ -5,6 +5,7 @@ import {
   addCategory,
   getAllCategory,
   updateCategories,
+  deleteCategoriesAction,
 } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Input from '../../components/UI/Input/Input';
@@ -80,8 +81,11 @@ const Category = () => {
   };
 
   const updateCategory = () => {
+    updateCheckedAndExpandedCategories();
     setUpdateCategoryModal(true);
+  };
 
+  const updateCheckedAndExpandedCategories = () => {
     const categories = createCategoryList(category.categories);
     const checkedArray = [];
     const expandedArray = [];
@@ -104,8 +108,6 @@ const Category = () => {
 
     setCheckedArray(checkedArray);
     setExpandedArray(expandedArray);
-
-    console.log({ checked, expanded, categories, checkedArray, expandedArray });
   };
 
   const handleCategoryInput = (key, value, index, type) => {
@@ -306,10 +308,28 @@ const Category = () => {
   };
 
   const deleteCategory = () => {
+    updateCheckedAndExpandedCategories();
     setDeleteCategoryModal(true);
   };
 
+  const deleteCategories = () => {
+    const checkedIdsArray = checkedArray.map((item, index) => ({
+      _id: item.value,
+    }));
+    const expandedIdsArray = expandedArray.map((item, index) => ({
+      _id: item.value,
+    }));
+    const idsArray = expandedIdsArray.concat(checkedIdsArray);
+    dispatch(deleteCategoriesAction(idsArray)).then((result) => {
+      if (result) {
+        dispatch(getAllCategory());
+        setDeleteCategoryModal(false);
+      }
+    });
+  };
+
   const renderDeleteCategoryModal = () => {
+    console.log('delete', checkedArray);
     return (
       <NewModal
         modalTitle="Confirm"
@@ -319,20 +339,25 @@ const Category = () => {
           {
             label: 'No',
             color: 'primary',
-            onclick: () => {
+            onClick: () => {
               alert('no');
             },
           },
           {
             label: 'Yes',
             color: 'danger',
-            onclick: () => {
-              alert('yes');
-            },
+            onClick: deleteCategories,
           },
         ]}
       >
-        Are you sure
+        <h5>Expanded</h5>
+        {expandedArray.map((item, index) => (
+          <span key={index}>{item.name}</span>
+        ))}
+        <h5>Checked</h5>
+        {checkedArray.map((item, index) => (
+          <span key={index}>{item.name}</span>
+        ))}
       </NewModal>
     );
   };
