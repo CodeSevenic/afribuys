@@ -75,12 +75,21 @@ export const categoryReducer = (state = initialState, action) => {
       };
     case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
       return { ...initialState };
+
     case categoryConstants.UPDATE_CATEGORIES_REQUEST:
       return { ...state, loading: true };
     case categoryConstants.UPDATE_CATEGORIES_SUCCESS:
       return { ...state, loading: false };
     case categoryConstants.UPDATE_CATEGORIES_FAILURE:
       return { ...state, error: action.payload.error };
+
+    case categoryConstants.DELETE_CATEGORIES_REQUEST:
+      return { ...state, loading: true };
+    case categoryConstants.DELETE_CATEGORIES_SUCCESS:
+      return { ...state, loading: false };
+    case categoryConstants.DELETE_CATEGORIES_FAILURE:
+      return { ...state, error: action.payload.error };
+
     default:
       return state;
   }
