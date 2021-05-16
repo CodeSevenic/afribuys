@@ -1,7 +1,7 @@
 import axiosInstance from '../helpers/axios';
 import { categoryConstants } from './constants';
 
-export const getAllCategory = () => {
+const getAllCategory = () => {
   return async (dispatch) => {
     dispatch({ type: categoryConstants.GET_ALL_CATEGORIES_REQUEST });
     const res = await axiosInstance.get(`category/getcategory`);
@@ -45,11 +45,16 @@ export const addCategory = (form) => {
 
 export const updateCategories = (form) => {
   return async (dispatch) => {
+    dispatch({ type: categoryConstants.UPDATE_CATEGORIES_REQUEST });
     const res = await axiosInstance.post('category/update', form);
     if (res.status === 201) {
-      return true;
+      dispatch({ type: categoryConstants.UPDATE_CATEGORIES_SUCCESS });
+      dispatch(getAllCategory());
     } else {
-      console.log(res);
+      dispatch({
+        type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
+        payload: { error: res.data.error },
+      });
     }
   };
 };
@@ -67,3 +72,5 @@ export const deleteCategoriesAction = (ids) => {
     }
   };
 };
+
+export { getAllCategory };
