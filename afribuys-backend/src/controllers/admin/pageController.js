@@ -12,4 +12,6 @@ exports.createPage = (req, res) => {
       navigateTo: `/productClicked?categoryId=${req.body.category}&type=${req.body.type}`,
     }));
   }
+
+  res.status(200).json({ body: req.body });
 };

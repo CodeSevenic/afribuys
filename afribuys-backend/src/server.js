@@ -12,6 +12,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const initialDataRoutes = require('./routes/admin/initialDataRoute');
+const pageRoutes = require('./routes/admin/pageRoutes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -40,6 +41,7 @@ app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', cartRoutes);
 app.use('/api', initialDataRoutes);
+app.use('/api', pageRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
