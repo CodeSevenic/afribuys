@@ -17,12 +17,15 @@ function App() {
 
   const dispatch = useDispatch();
 
+  // ComponentDidMount or componentDitUpdate
   useEffect(() => {
     if (!loginState.authenticate) {
       dispatch(isUserLoggedIn());
     }
-    dispatch(getInitialData());
-  }, []);
+    if (loginState.authenticate) {
+      dispatch(getInitialData());
+    }
+  }, [loginState.authenticate]);
 
   return (
     <div className="App">
