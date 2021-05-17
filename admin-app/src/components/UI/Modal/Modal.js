@@ -20,7 +20,7 @@ const NewModal = (props) => {
             variant="primary"
             {...props}
             style={{ backgroundColor: '#333' }}
-            onClick={props.handleClose}
+            onClick={props.onSubmit}
           >
             Save
           </Button>
