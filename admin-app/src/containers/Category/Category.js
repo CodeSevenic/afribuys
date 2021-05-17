@@ -51,6 +51,7 @@ const Category = () => {
 
     if (categoryName === '') {
       alert('Category name is required');
+      setShow(false);
       return;
     }
 
@@ -159,8 +160,6 @@ const Category = () => {
     });
 
     dispatch(updateCategories(form));
-
-    setUpdateCategoryModal(false);
   };
 
   const deleteCategory = () => {
@@ -282,7 +281,8 @@ const Category = () => {
       />
       <UpdateCategoriesModal
         show={updateCategoryModal}
-        handleClose={updateCategoriesForm}
+        handleClose={() => setUpdateCategoryModal(false)}
+        onSubmit={updateCategoriesForm}
         modalTitle="Update Categories"
         size="lg"
         expandedArray={expandedArray}
@@ -290,7 +290,6 @@ const Category = () => {
         handleCategoryInput={handleCategoryInput}
         categoryList={categoryList}
       />
-      {/* {renderAddCategoryModal()} */}
       {renderDeleteCategoryModal()}
     </Layout>
   );

@@ -8,6 +8,7 @@ const UpdateCategoriesModal = (props) => {
     size,
     handleClose,
     show,
+    onSubmit,
     modalTitle,
     expandedArray,
     checkedArray,
@@ -17,6 +18,7 @@ const UpdateCategoriesModal = (props) => {
   console.log({ expandedArray, checkedArray });
   return (
     <NewModal
+      onSubmit={onSubmit}
       show={show}
       handleClose={handleClose}
       modalTitle={modalTitle}
