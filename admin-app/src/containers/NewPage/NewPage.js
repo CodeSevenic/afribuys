@@ -30,6 +30,11 @@ const NewPage = () => {
     console.log(page);
     if (!page.loading) {
       setCreateModal(false);
+      setTitle('');
+      setCategoryId('');
+      setDesc('');
+      setProducts([]);
+      setBanners([]);
     }
   }, [page]);
 
@@ -78,7 +83,8 @@ const NewPage = () => {
       <NewModal
         show={createModal}
         modalTitle="Create New Page"
-        handleClose={submitPageForm}
+        handleClose={() => setCreateModal(false)}
+        onSubmit={submitPageForm}
       >
         <Row>
           <Col>
