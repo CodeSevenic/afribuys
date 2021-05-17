@@ -11,6 +11,8 @@ const NewPage = () => {
   const [createModal, setCreateModal] = useState(false);
   const [title, setTitle] = useState('');
   const category = useSelector((state) => state.category);
+  const page = useSelector((state) => state.page);
+
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState('');
   const [desc, setDesc] = useState('');
@@ -23,6 +25,13 @@ const NewPage = () => {
   useEffect(() => {
     setCategories(createCategoryList(category.categories));
   }, [category]);
+
+  useEffect(() => {
+    console.log(page);
+    if (!page.loading) {
+      setCreateModal(false);
+    }
+  }, [page]);
 
   const onCategoryChange = (e) => {
     const category = categories.find(
@@ -134,8 +143,14 @@ const NewPage = () => {
 
   return (
     <Layout sidebar>
-      {renderCreatePageModal()}
-      <button onClick={() => setCreateModal(true)}>Create Page</button>
+      {page.loading ? (
+        <>Creating Page... please wait</>
+      ) : (
+        <>
+          {renderCreatePageModal()}
+          <button onClick={() => setCreateModal(true)}>Create Page</button>{' '}
+        </>
+      )}
     </Layout>
   );
 };
