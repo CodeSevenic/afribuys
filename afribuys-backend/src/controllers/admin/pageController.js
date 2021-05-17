@@ -1,3 +1,5 @@
+const Page = require('../../models/pageModel');
+
 exports.createPage = (req, res) => {
   const { banners, products } = req.files;
   if (banners.length > 0) {
@@ -12,6 +14,17 @@ exports.createPage = (req, res) => {
       navigateTo: `/productClicked?categoryId=${req.body.category}&type=${req.body.type}`,
     }));
   }
+
+  req.body.createdBy = req.user._id;
+
+  const page = Page(req.body);
+
+  page.save((error, page) => {
+    if (error) return res.status(400).json({ error });
+    if (page) {
+      return res.status(201).json({ page });
+    }
+  });
 
   res.status(200).json({ body: req.body });
 };

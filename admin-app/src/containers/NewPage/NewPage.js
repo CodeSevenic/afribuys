@@ -22,10 +22,12 @@ const NewPage = () => {
 
   const handleBannerImages = (e) => {
     console.log(e);
+    setBanners([...banners, e.target.files[0]]);
   };
 
   const handleProductImages = (e) => {
     console.log(e);
+    setProducts([...products, e.target.files[0]]);
   };
 
   const renderCreatePageModal = () => {
@@ -68,11 +70,25 @@ const NewPage = () => {
             />
           </Col>
         </Row>
+        {banners.length > 0
+          ? banners.map((banner, index) => (
+              <Row>
+                <Col>{banner.name}</Col>
+              </Row>
+            ))
+          : null}
         <Row>
           <Col>
             <Input type="file" name="banners" onChange={handleBannerImages} />
           </Col>
         </Row>
+        {products.length > 0
+          ? products.map((product, index) => (
+              <Row>
+                <Col>{product.name}</Col>
+              </Row>
+            ))
+          : null}
         <Row>
           <Col>
             <Input type="file" name="products" onChange={handleProductImages} />
