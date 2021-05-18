@@ -5,6 +5,7 @@ import getParams from '../../../utils/getParams';
 import './ProductPage.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import Card from '../../../components/UI/Card/Card';
 
 const ProductPage = (props) => {
   const dispatch = useDispatch();
@@ -35,12 +36,16 @@ const ProductPage = (props) => {
             </a>
           ))}
       </Carousel>
-      <div>
+      <div className="page-content-cards">
         {page.products &&
           page.products.map((product, index) => (
-            <div key={index}>
-              <img src={product.img} alt="Product" />
-            </div>
+            <Card key={index}>
+              <img
+                className="page-product-img"
+                src={product.img}
+                alt="Product"
+              />
+            </Card>
           ))}
       </div>
     </div>
