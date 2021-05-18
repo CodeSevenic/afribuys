@@ -1,3 +1,3 @@
 export * from './categoryAction';
 export * from './productAction';
-export * from './pageActions';
+export * from './authActions';
