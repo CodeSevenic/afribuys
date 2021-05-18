@@ -8,7 +8,7 @@ import {
   MaterialInput,
   MaterialButton,
   DropdownMenu,
-} from '../MaterialUI';
+} from '../MaterialUI/MaterialUI';
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
@@ -37,18 +37,33 @@ const Header = (props) => {
                 label="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                rightElement={<a href="#">Forgot?</a>}
+                // rightElement={<a href="#">Forgot?</a>}
               />
               <MaterialButton
                 title="Login"
                 bgColor="#fb641b"
                 textColor="#ffffff"
+                style={{
+                  margin: '40px 0 20px 0',
+                }}
+              />
+
+              <p>OR</p>
+
+              <MaterialButton
+                title="Request OTP"
+                bgColor="#ffffff"
+                textColor="#2874f0"
+                style={{
+                  margin: '40px 0',
+                }}
               />
             </div>
           </div>
         </div>
       </Modal>
       <div className="subHeader">
+        {/* Logo */}
         <div className="logo">
           <a href="">
             <img src={flipkartLogo} className="logoimage" alt="" />
@@ -59,6 +74,9 @@ const Header = (props) => {
             <img src={goldenStar} className="goldenStar" alt="" />
           </a>
         </div>
+        {/* Logo End */}
+
+        {/* Search component */}
         <div
           style={{
             padding: '0 10px',
@@ -78,6 +96,9 @@ const Header = (props) => {
             </div>
           </div>
         </div>
+        {/* Search Component End */}
+
+        {/* Right side menu */}
         <div className="rightMenu">
           <DropdownMenu
             menu={
@@ -122,6 +143,7 @@ const Header = (props) => {
             </a>
           </div>
         </div>
+        {/* Right side menu end */}
       </div>
     </div>
   );
