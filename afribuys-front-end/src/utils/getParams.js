@@ -1,4 +1,4 @@
-export default function getQuery(query) {
+export default function getParams(query) {
   if (query) {
     const queryString = query.split('?')[1];
     if (queryString.length > 0) {
