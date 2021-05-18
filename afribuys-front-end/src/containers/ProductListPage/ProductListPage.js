@@ -19,16 +19,12 @@ const ProductListPage = (props) => {
         break;
       default:
         content = null;
+        break;
     }
 
     return content;
   };
-  return (
-    <Layout>
-      <ProductStore {...props} />
-      {renderProduct()}
-    </Layout>
-  );
+  return <Layout>{renderProduct()}</Layout>;
 };
 
 export default ProductListPage;

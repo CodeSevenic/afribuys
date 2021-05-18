@@ -13,8 +13,9 @@ const ProductPage = (props) => {
     };
 
     dispatch(getProductPage(payload));
-  });
-  return <></>;
+  }, []);
+
+  return <>{JSON.stringify(product.page)}</>;
 };
 
 export default ProductPage;
