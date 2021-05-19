@@ -52,7 +52,7 @@ const Header = (props) => {
           { label: 'Rewards', href: '', icon: null },
           { label: 'Notifications', href: '', icon: null },
           { label: 'Gift Cards', href: '', icon: null },
-          { label: 'Logout', href: '', icon: null },
+          { label: 'Log', href: '', icon: null, onClick: logout },
         ]}
         firstMenu={
           <div className="firstmenu">
