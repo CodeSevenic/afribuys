@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetailsById } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import { IoIosArrowForward, IoIosStar, IoMdCart } from 'react-icons/io';
-import { BiRupee } from 'react-icons/bi';
 import { AiFillThunderbolt } from 'react-icons/ai';
 import { MaterialButton } from '../../components/MaterialUI/MaterialUI';
 import { generatePublicUrl } from '../../urlConfig';
@@ -39,11 +38,6 @@ const ProductDetailsPage = (props) => {
                 <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
               </div>
             ))}
-            {/* <div className="thumbnail active">
-              {product.productDetails.productPictures.map((thumb, index) => (
-                <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
-              ))}
-            </div> */}
           </div>
           <div className="productDescContainer">
             <div className="productDescImgContainer">
