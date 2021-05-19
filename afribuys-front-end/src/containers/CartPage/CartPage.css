@@ -3,10 +3,5 @@
   max-width: 1260px;
   margin: 15px auto;
   justify-content: space-between;
-}
-/* CART ITEMS */
-.cartItemDetails {
-  display: flex;
-  justify-content: space-between;
-  flex: 1;
+  align-items: flex-start;
 }
