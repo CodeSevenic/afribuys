@@ -39,13 +39,13 @@ const ProductPage = (props) => {
       <div className="page-content-cards">
         {page.products &&
           page.products.map((product, index) => (
-            <Card key={index}>
+            <div className="page-card" key={index}>
               <img
                 className="page-product-img"
                 src={product.img}
                 alt="Product"
               />
-            </Card>
+            </div>
           ))}
       </div>
     </div>

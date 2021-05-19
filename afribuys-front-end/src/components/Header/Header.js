@@ -36,11 +36,7 @@ const Header = (props) => {
   const renderLoggedInMenu = () => {
     return (
       <DropdownMenu
-        menu={
-          <a href className="user">
-            {auth.user.fullName}
-          </a>
-        }
+        menu={<a className="user">{auth.user.fullName}</a>}
         menus={[
           { label: 'My Profile', href: '', icon: null },
           { label: 'SuperCoin Zone', href: '', icon: null },
@@ -57,9 +53,7 @@ const Header = (props) => {
         firstMenu={
           <div className="firstmenu">
             <span>New Customer?</span>
-            <a style={{ color: '#2874f0' }} href>
-              Sign Up
-            </a>
+            <a style={{ color: '#2874f0' }}>Sign Up</a>
           </div>
         }
       />
@@ -70,7 +64,7 @@ const Header = (props) => {
     return (
       <DropdownMenu
         menu={
-          <a className="loginButton" href onClick={() => setLoginModal(true)}>
+          <a className="loginButton" onClick={() => setLoginModal(true)}>
             Login
           </a>
         }
@@ -85,9 +79,7 @@ const Header = (props) => {
         firstMenu={
           <div className="firstmenu">
             <span>New Customer?</span>
-            <a style={{ color: '#2874f0' }} href>
-              Sign Up
-            </a>
+            <a style={{ color: '#2874f0' }}>Sign Up</a>
           </div>
         }
       />
@@ -165,7 +157,7 @@ const Header = (props) => {
           ]}
         />
         <div>
-          <a className="cart" href>
+          <a className="cart">
             <IoIosCart />
             <span style={{ margin: '0 10px' }}>Cart</span>
           </a>

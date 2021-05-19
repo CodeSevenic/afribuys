@@ -2,8 +2,13 @@ import React from 'react';
 import './Card.css';
 
 const Card = (props) => {
+  const { headerLeft, headerRight, ...rest } = props;
   return (
-    <div className="product-card" {...props}>
+    <div className="card" {...rest}>
+      <div className="cardHeader">
+        {headerLeft && <div>{headerLeft}</div>}
+        {headerRight && <div>{headerRight}</div>}
+      </div>
       {props.children}
     </div>
   );

@@ -35,7 +35,7 @@ const ProductDetailsPage = (props) => {
         <div className="flexRow">
           <div className="verticalImageStack">
             {product.productDetails.productPictures.map((thumb, index) => (
-              <div className="thumbnail">
+              <div key={index} className="thumbnail">
                 <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
               </div>
             ))}
@@ -110,15 +110,9 @@ const ProductDetailsPage = (props) => {
                 72,234 Ratings & 8,140 Reviews
               </span>
             </div>
-            <div className="extraOffer">
-              Extra <BiRupee />
-              4500 off{' '}
-            </div>
+            <div className="extraOffer">Extra R 4500 off </div>
             <div className="flexRow priceContainer">
-              <span className="price">
-                <BiRupee />
-                {product.productDetails.price}
-              </span>
+              <span className="price">R {product.productDetails.price}</span>
               <span className="discount" style={{ margin: '0 10px' }}>
                 22% off
               </span>
