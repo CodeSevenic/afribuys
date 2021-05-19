@@ -6,6 +6,7 @@ const {
 const {
   createProduct,
   getProductsBySlug,
+  getProductDetailsById,
 } = require('../controllers/productController');
 const multer = require('multer');
 const shortid = require('shortid');
@@ -31,4 +32,5 @@ router.post(
   createProduct
 );
 router.get('/products/:slug', getProductsBySlug);
+router.get('/product/:productId', getProductDetailsById);
 module.exports = router;
