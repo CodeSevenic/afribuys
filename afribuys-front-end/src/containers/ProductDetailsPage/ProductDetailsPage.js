@@ -20,7 +20,7 @@ const ProductDetailsPage = (props) => {
 
   return (
     <Layout>
-      <div>Product Details Page</div>
+      <div>{product.productDetails.name}</div>
     </Layout>
   );
 };

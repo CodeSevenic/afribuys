@@ -10,7 +10,7 @@ import {
   DropdownMenu,
 } from '../MaterialUI/MaterialUI';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../../actions/authActions';
+import { login, signout } from '../../actions/authActions';
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
@@ -23,8 +23,13 @@ const Header = (props) => {
     dispatch(login({ email, password }));
   };
 
+  const logout = () => {
+    dispatch(signout());
+  };
+
   useEffect(() => {
     if (auth.authenticate) {
+      setLoginModal(false);
     }
   }, [auth.authenticate]);
 
