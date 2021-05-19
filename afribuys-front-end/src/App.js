@@ -4,7 +4,7 @@ import HomePage from './containers/HomePage/HomePage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductListPage from './containers/ProductListPage/ProductListPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { isUserLoggedIn, updateCArt } from './actions/actionsIndex';
+import { isUserLoggedIn, updateCart } from './actions/actionsIndex';
 import ProductDetailsPage from './containers/ProductDetailsPage/ProductDetailsPage';
 import CartPage from './containers/CartPage/CartPage';
 

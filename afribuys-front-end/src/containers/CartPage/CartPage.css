@@ -5,3 +5,8 @@
   justify-content: space-between;
 }
 /* CART ITEMS */
+.cartItemDetails {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}

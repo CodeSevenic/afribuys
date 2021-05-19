@@ -21,3 +21,18 @@ export const addToCart = (product) => {
     });
   };
 };
+
+export const updateCart = () => {
+  return async (dispatch) => {
+    const cartItems = localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart'))
+      : null;
+
+    if (cartItems) {
+      dispatch({
+        type: cartConstants.ADD_TO_CART,
+        payload: { cartItems },
+      });
+    }
+  };
+};
