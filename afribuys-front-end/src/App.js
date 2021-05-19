@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ProductListPage from './containers/ProductListPage/ProductListPage';
 import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn } from './actions/actionsIndex';
+import ProductDetailsPage from './containers/ProductDetailsPage/ProductDetailsPage';
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -20,6 +21,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
+          <Route
+            path="/:productSlug/:productId/p"
+            component={ProductDetailsPage}
+          />
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
       </Router>
