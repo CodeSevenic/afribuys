@@ -37,6 +37,8 @@ export const addAddress = (payload) => {
         const { error } = res.data;
         dispatch({ type: userConstants.ADD_USER_ADDRESS_FAILURE, payload: { error } });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
