@@ -6,6 +6,7 @@
 }
 
 .card {
+  width: calc(100% - 300px);
   margin: 10px 10px;
   border: 1px solid #cecece;
   box-shadow: 0 0 2px -2px gray;
