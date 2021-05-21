@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, getCartItems } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import { MaterialButton } from '../../components/MaterialUI/MaterialUI';
+import PriceDetails from '../../components/PriceDetails/PriceDetails';
 import Card from '../../components/UI/Card/Card';
 import CartItem from './CartItem/CartItem';
 import './CartPage.css';
@@ -73,12 +74,15 @@ const CartPage = (props) => {
             </div>
           </div>
         </Card>
-        <Card
-          headerLeft="Price"
-          style={{
-            width: '380px',
-          }}
-        ></Card>
+        <PriceDetails
+          totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+            return qty + cartItems[key].qty;
+          }, 0)}
+          totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+            const { price, qty } = cart.cartItems[key];
+            return totalPrice + price * qty;
+          }, 0)}
+        />
       </div>
     </Layout>
   );
