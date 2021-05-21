@@ -15,6 +15,13 @@ export const userReducer = (state = initialState, action) => {
     case userConstants.GET_USER_ADDRESS_FAILURE:
       return { ...state, loading: false, error: action.payload.error };
 
+    case userConstants.ADD_USER_ADDRESS_REQUEST:
+      return { ...state, loading: true };
+    case userConstants.ADD_USER_ADDRESS_SUCCESS:
+      return { ...state, loading: false, address: action.payload.address };
+    case userConstants.ADD_USER_ADDRESS_FAILURE:
+      return { ...state, loading: false, error: action.payload.error };
+
     default:
       return state;
   }
