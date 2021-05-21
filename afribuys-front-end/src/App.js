@@ -28,8 +28,8 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/cart" exact component={CartPage} />
-          <Route path="/checkout" exact component={CheckoutPage} />
+          <Route path="/cart" component={CartPage} />
+          <Route path="/checkout" component={CheckoutPage} />
           <Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
           <Route path="/:slug" component={ProductListPage} />
         </Switch>

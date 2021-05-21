@@ -68,7 +68,7 @@ const CartPage = (props) => {
             <div style={{ width: '250px' }}>
               <MaterialButton
                 title="PLACE ORDER"
-                onClick={() => props.history.push('/checkout')}
+                onClick={() => props.history.push(`/checkout`)}
               />
             </div>
           </div>
