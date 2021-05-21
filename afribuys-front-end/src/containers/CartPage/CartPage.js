@@ -76,7 +76,7 @@ const CartPage = (props) => {
         </Card>
         <PriceDetails
           totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-            return qty + cartItems[key].qty;
+            return qty + cart.cartItems[key].qty;
           }, 0)}
           totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
             const { price, qty } = cart.cartItems[key];

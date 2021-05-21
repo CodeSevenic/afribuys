@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addAddress } from '../../actions/actionsIndex';
 import { MaterialButton, MaterialInput } from '../../components/MaterialUI/MaterialUI';
 
@@ -15,6 +15,8 @@ const AddressForm = (props) => {
   const [alternatePhone, setAlternatePhone] = useState('');
   const [addressType, setAddressType] = useState('');
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  const [submitFlag, setSubmitFlag] = useState(false);
 
   const inputContainer = {
     width: '100%',
@@ -38,7 +40,17 @@ const AddressForm = (props) => {
     };
     console.log(payload);
     dispatch(addAddress(payload));
+    setSubmitFlag(true);
   };
+
+  useEffect(() => {
+    console.log('addressCount', user.address);
+    if (submitFlag) {
+      console.log('where are we', user);
+      const address = user.address.slice(user.address.length - 1)[0];
+      props.onSubmitForm(address);
+    }
+  }, [user.address]);
 
   const renderAddressForm = () => {
     return (

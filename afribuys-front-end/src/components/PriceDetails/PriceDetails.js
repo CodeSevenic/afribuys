@@ -3,10 +3,10 @@ import Card from '../UI/Card/Card';
 
 const PriceDetails = (props) => {
   return (
-    <Card headerLeft="Price Details" style={{ maxWidth: '380px' }}>
+    <Card headerLeft={'Price Details'} style={{ maxWidth: '380px' }}>
       <div
         style={{
-          padding: '250px',
+          padding: '20px',
           boxSizing: 'border-box',
         }}
       >
@@ -14,12 +14,10 @@ const PriceDetails = (props) => {
           <div>Price ({props.totalItem} items)</div>
           <div>{props.totalPrice}</div>
         </div>
-
         <div className="flexRow sb" style={{ margin: '10px 0' }}>
           <div>Delivery Charges</div>
           <div>FREE</div>
         </div>
-
         <div className="flexRow sb" style={{ margin: '10px 0' }}>
           <div>Total Amount</div>
           <div>{props.totalPrice}</div>
