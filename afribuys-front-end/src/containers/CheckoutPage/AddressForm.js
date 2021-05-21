@@ -40,21 +40,9 @@ const AddressForm = (props) => {
     dispatch(addAddress(payload));
   };
 
-  return (
-    <div className="checkoutStep" style={{ background: '#f5faff' }}>
-      <div className={`checkoutHeader`}>
-        <div>
-          <span className="stepNumber">+</span>
-          <span className="stepTitle">{'ADD NEW ADDRESS'}</span>
-        </div>
-      </div>
-      <div
-        style={{
-          padding: '0 60px',
-          paddingBottom: '20px',
-          boxSizing: 'border-box',
-        }}
-      >
+  const renderAddressForm = () => {
+    return (
+      <>
         <div className="flexRow">
           <div style={inputContainer}>
             <MaterialInput
@@ -163,6 +151,28 @@ const AddressForm = (props) => {
             }}
           />
         </div>
+      </>
+    );
+  };
+
+  if (props.withoutLayout) return <div>{renderAddressForm()}</div>;
+
+  return (
+    <div className="checkoutStep" style={{ background: '#f5faff' }}>
+      <div className={`checkoutHeader`}>
+        <div>
+          <span className="stepNumber">+</span>
+          <span className="stepTitle">{'ADD NEW ADDRESS'}</span>
+        </div>
+      </div>
+      <div
+        style={{
+          padding: '0 60px',
+          paddingBottom: '20px',
+          boxSizing: 'border-box',
+        }}
+      >
+        {renderAddressForm()}
       </div>
     </div>
   );

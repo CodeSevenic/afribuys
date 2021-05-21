@@ -85,22 +85,24 @@ const CheckoutPage = (props) => {
           <CheckoutStep
             stepNumber={'2'}
             title="DELIVERY ADDRESS"
-            active={!confirmAddress}
+            active={!confirmAddress && auth.authenticate}
             body={
               <>
-                {confirmAddress
-                  ? JSON.stringify(selectedAddress)
-                  : address.map((addr, index) => (
-                      <div key={index} className="flexRow addressContainer">
-                        <div>
-                          <input
-                            name="address"
-                            onClick={() => selectAddress(addr)}
-                            type="radio"
-                          />
-                        </div>
-                        <div className="flexRow sb addressinfo">
-                          <div>
+                {confirmAddress ? (
+                  <div>{`${selectAddress.address} - ${selectedAddress.pinCode}`}</div>
+                ) : (
+                  address.map((addr, index) => (
+                    <div key={index} className="flexRow addressContainer">
+                      <div>
+                        <input
+                          name="address"
+                          onClick={() => selectAddress(addr)}
+                          type="radio"
+                        />
+                      </div>
+                      <div className="flexRow sb addressinfo">
+                        {!addr.edit ? (
+                          <div style={{ width: '100%' }}>
                             <div>
                               <span>{addr.name}</span>
                               <span>{addr.addressType}</span>
@@ -117,10 +119,12 @@ const CheckoutPage = (props) => {
                               />
                             )}
                           </div>
-                          {addr.selected && <div>Edit</div>}
-                        </div>
+                        ) : null}
+                        {addr.selected && <div>Edit</div>}
                       </div>
-                    ))}
+                    </div>
+                  ))
+                )}
               </>
             }
           />
