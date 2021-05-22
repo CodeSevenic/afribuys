@@ -81,6 +81,23 @@ const CheckoutPage = (props) => {
   };
 
   const onConfirmOrder = () => {
+    const totalAmount = Object.keys(cart.cartItems).reduce(function (qty, key) {
+      return qty + cart.cartItems[key].qty;
+    }, 0);
+
+    const items = Object.keys(cart.cartItems).map((key) => ({
+      productId: key,
+      payablePrice: cart.cartItems[key].price,
+      purchaseQty: cart.cartItems[key].qty,
+    }));
+
+    const payload = {
+      addressId: selectedAddress._id,
+      totalAmount,
+      items,
+      paymentStatus: 'pending',
+    };
+    console.log(payload);
     setConfirmOder(true);
   };
 

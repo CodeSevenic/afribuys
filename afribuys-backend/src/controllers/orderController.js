@@ -3,10 +3,10 @@ const Order = require('../models/orderModel');
 exports.addOrder = (req, res) => {
   req.body.user = req.user._id;
   const order = new Order(req.body);
-  order.save((error, order) => {
+  order.save((error, orders) => {
     if (error) return res.status(400).json({ error });
-    if (order) {
-      res.status(201).json({ order });
+    if (orders) {
+      res.status(201).json({ orders });
     }
   });
 };
