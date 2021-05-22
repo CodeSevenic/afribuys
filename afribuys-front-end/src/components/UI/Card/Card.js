@@ -5,10 +5,14 @@ const Card = (props) => {
   const { headerLeft, headerRight, ...rest } = props;
   return (
     <div className="card" {...rest}>
-      <div className="cardHeader">
-        {headerLeft && <div>{headerLeft}</div>}
-        {headerRight && <div>{headerRight}</div>}
-      </div>
+      {props.headerLeft ||
+        (props.headerRight && (
+          <div className="cardHeader">
+            {headerLeft && <div>{headerLeft}</div>}
+            {headerRight && <div>{headerRight}</div>}
+          </div>
+        ))}
+
       {props.children}
     </div>
   );

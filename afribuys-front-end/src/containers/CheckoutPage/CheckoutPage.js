@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, getCartItems } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
-import { MaterialInput } from '../../components/MaterialUI/MaterialUI';
+import {
+  MaterialButton,
+  MaterialInput,
+} from '../../components/MaterialUI/MaterialUI';
 import AddressForm from './AddressForm';
 import PriceDetails from '../../components/PriceDetails/PriceDetails';
 import './CheckoutPage.css';
 import Address from './AddressComponent/Address';
 import CartPage from '../CartPage/CartPage';
+import Card from '../../components/UI/Card/Card';
 
 const CheckoutStep = (props) => {
   return (
@@ -145,6 +149,21 @@ const CheckoutPage = (props) => {
             active={orderSummary}
             body={orderSummary ? <CartPage onlyCartItems={true} /> : null}
           />
+
+          {orderSummary && (
+            <Card style={{ margin: '10px 0' }}>
+              <div
+                className="flexRow sb"
+                style={{ padding: '20px', alignItems: 'center' }}
+              >
+                <p>
+                  Order Summary email will be sent to{' '}
+                  <strong>{auth.user.email}</strong>
+                </p>
+                <MaterialButton title="CONTINUE" style={{ width: '200px' }} />
+              </div>
+            </Card>
+          )}
 
           <CheckoutStep stepNumber={'4'} title={'PAYMENT OPTIONS'} />
         </div>
