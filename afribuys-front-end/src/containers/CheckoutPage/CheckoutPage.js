@@ -2,15 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, getCartItems } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
-import {
-  Anchor,
-  MaterialButton,
-  MaterialInput,
-} from '../../components/MaterialUI/MaterialUI';
+import { MaterialInput } from '../../components/MaterialUI/MaterialUI';
 import AddressForm from './AddressForm';
 import PriceDetails from '../../components/PriceDetails/PriceDetails';
 import './CheckoutPage.css';
 import Address from './AddressComponent/Address';
+import CartPage from '../CartPage/CartPage';
 
 const CheckoutStep = (props) => {
   return (
@@ -113,7 +110,7 @@ const CheckoutPage = (props) => {
             body={
               <>
                 {confirmAddress ? (
-                  <div>{`${selectAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  <div>{`${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                 ) : (
                   address.map((addr, index) => (
                     <Address
@@ -146,6 +143,7 @@ const CheckoutPage = (props) => {
             stepNumber={'3'}
             title={'ORDER SUMMARY'}
             active={orderSummary}
+            body={orderSummary ? <CartPage onlyCartItems={true} /> : null}
           />
 
           <CheckoutStep stepNumber={'4'} title={'PAYMENT OPTIONS'} />
