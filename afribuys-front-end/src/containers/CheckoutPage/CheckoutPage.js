@@ -12,6 +12,7 @@ import './CheckoutPage.css';
 import Address from './AddressComponent/Address';
 import CartPage from '../CartPage/CartPage';
 import Card from '../../components/UI/Card/Card';
+import { addOrder } from '../../actions/orderActions';
 
 const CheckoutStep = (props) => {
   return (
@@ -102,6 +103,7 @@ const CheckoutPage = (props) => {
       paymentStatus: 'pending',
     };
     console.log(payload);
+    dispatch(addOrder(payload));
     setConfirmOder(true);
   };
 
