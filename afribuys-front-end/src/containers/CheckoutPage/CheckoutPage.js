@@ -38,8 +38,10 @@ const CheckoutPage = (props) => {
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
-  const [orderConfirmation, setOrderConfirmation] = useState(false);
+  const [orderSummaryConfirmation, setOrderSummaryConfirmation] =
+    useState(false);
   const [paymentOption, setPaymentOption] = useState(false);
+  const [confirmOrder, setConfirmOder] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -73,9 +75,13 @@ const CheckoutPage = (props) => {
   };
 
   const userOrderConfirmation = () => {
-    setOrderConfirmation(true);
+    setOrderSummaryConfirmation(true);
     setOrderSummary(false);
     setPaymentOption(true);
+  };
+
+  const onConfirmOrder = () => {
+    setConfirmOder(true);
   };
 
   useEffect(() => {
@@ -91,6 +97,16 @@ const CheckoutPage = (props) => {
     }));
     setAddress(address);
   }, [user.address]);
+
+  if (confirmOrder) {
+    return (
+      <Layout>
+        <Card>
+          <div>Thank you</div>
+        </Card>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -122,7 +138,7 @@ const CheckoutPage = (props) => {
             body={
               <>
                 {confirmAddress ? (
-                  <div>{`${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
+                  <div className="stepCompleted">{`${selectedAddress.name} ${selectedAddress.address} - ${selectedAddress.pinCode}`}</div>
                 ) : (
                   address.map((addr, index) => (
                     <Address
@@ -158,8 +174,10 @@ const CheckoutPage = (props) => {
             body={
               orderSummary ? (
                 <CartPage onlyCartItems={true} />
-              ) : orderConfirmation ? (
-                <div>{Object.keys(cart.cartItems).length} Items</div>
+              ) : orderSummaryConfirmation ? (
+                <div className="stepCompleted">
+                  {Object.keys(cart.cartItems).length} Items
+                </div>
               ) : null
             }
           />
@@ -189,9 +207,18 @@ const CheckoutPage = (props) => {
             active={paymentOption}
             body={
               paymentOption && (
-                <div className="flexRow">
-                  <input type="radio" name="paymentOption" value="cod" />
-                  <div>Cash on delivery</div>
+                <div className="stepCompleted flexRow sb v-align">
+                  <div className="flexRow v-align">
+                    <div className="spacing-px">
+                      <input type="radio" name="paymentOption" value="cod" />
+                    </div>
+                    <div>Cash on delivery</div>
+                  </div>
+                  <MaterialButton
+                    title="CONFIRM ORDER"
+                    onClick={onConfirmOrder}
+                    style={{ width: '200px' }}
+                  />
                 </div>
               )
             }
