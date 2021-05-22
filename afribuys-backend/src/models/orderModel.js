@@ -25,6 +25,10 @@ const orderSchema = new mongoose.Schema(
         payablePrice: {
           type: Number,
         },
+        purchaseQty: {
+          type: Number,
+          required: true,
+        },
       },
     ],
     paymentStatus: {
