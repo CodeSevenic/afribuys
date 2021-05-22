@@ -1,12 +1,18 @@
 const Order = require('../models/orderModel');
+const Cart = require('../models/cartModel');
 
 exports.addOrder = (req, res) => {
-  req.body.user = req.user._id;
-  const order = new Order(req.body);
-  order.save((error, orders) => {
+  Cart.deleteOne({ user: req.user._id }).exec((error, result) => {
     if (error) return res.status(400).json({ error });
-    if (orders) {
-      res.status(201).json({ orders });
+    if (result) {
+      req.body.user = req.user._id;
+      const order = new Order(req.body);
+      order.save((error, orders) => {
+        if (error) return res.status(400).json({ error });
+        if (orders) {
+          res.status(201).json({ orders });
+        }
+      });
     }
   });
 };

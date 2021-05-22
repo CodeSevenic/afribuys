@@ -12,7 +12,7 @@ import './CheckoutPage.css';
 import Address from './AddressComponent/Address';
 import CartPage from '../CartPage/CartPage';
 import Card from '../../components/UI/Card/Card';
-import { addOrder } from '../../actions/orderActions';
+import { addOrder } from '../../actions/actionsIndex';
 
 const CheckoutStep = (props) => {
   return (
