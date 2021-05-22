@@ -38,6 +38,8 @@ const CheckoutPage = (props) => {
   const [confirmAddress, setConfirmAddress] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [orderSummary, setOrderSummary] = useState(false);
+  const [orderConfirmation, setOrderConfirmation] = useState(false);
+  const [paymentOption, setPaymentOption] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -68,6 +70,12 @@ const CheckoutPage = (props) => {
       adr._id === addr._id ? { ...adr, edit: true } : { ...adr, edit: false }
     );
     setAddress(updatedAddress);
+  };
+
+  const userOrderConfirmation = () => {
+    setOrderConfirmation(true);
+    setOrderSummary(false);
+    setPaymentOption(true);
   };
 
   useEffect(() => {
@@ -147,7 +155,13 @@ const CheckoutPage = (props) => {
             stepNumber={'3'}
             title={'ORDER SUMMARY'}
             active={orderSummary}
-            body={orderSummary ? <CartPage onlyCartItems={true} /> : null}
+            body={
+              orderSummary ? (
+                <CartPage onlyCartItems={true} />
+              ) : orderConfirmation ? (
+                <div>{Object.keys(cart.cartItems).length} Items</div>
+              ) : null
+            }
           />
 
           {orderSummary && (
@@ -160,12 +174,28 @@ const CheckoutPage = (props) => {
                   Order Summary email will be sent to{' '}
                   <strong>{auth.user.email}</strong>
                 </p>
-                <MaterialButton title="CONTINUE" style={{ width: '200px' }} />
+                <MaterialButton
+                  title="CONTINUE"
+                  onClick={userOrderConfirmation}
+                  style={{ width: '200px' }}
+                />
               </div>
             </Card>
           )}
 
-          <CheckoutStep stepNumber={'4'} title={'PAYMENT OPTIONS'} />
+          <CheckoutStep
+            stepNumber={'4'}
+            title={'PAYMENT OPTIONS'}
+            active={paymentOption}
+            body={
+              paymentOption && (
+                <div className="flexRow">
+                  <input type="radio" name="paymentOption" value="cod" />
+                  <div>Cash on delivery</div>
+                </div>
+              )
+            }
+          />
         </div>
         {/* Price Component */}
         <PriceDetails
