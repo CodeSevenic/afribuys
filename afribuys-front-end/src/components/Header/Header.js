@@ -48,7 +48,7 @@ const Header = (props) => {
           { label: 'Rewards', href: '', icon: null },
           { label: 'Notifications', href: '', icon: null },
           { label: 'Gift Cards', href: '', icon: null },
-          { label: 'Log', href: '', icon: null, onClick: logout },
+          { label: 'Logout', href: '', icon: null, onClick: logout },
         ]}
         firstMenu={
           <div className="firstmenu">
@@ -159,7 +159,7 @@ const Header = (props) => {
           ]}
         />
         <div>
-          <a className="cart">
+          <a href="/cart" className="cart">
             <IoIosCart />
             <span style={{ margin: '0 10px' }}>Cart</span>
           </a>
