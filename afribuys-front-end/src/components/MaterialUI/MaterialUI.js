@@ -97,10 +97,12 @@ const DropdownMenu = (props) => {
               <li key={index}>
                 <a
                   onClick={(e) => {
-                    e.preventDefault();
-                    item.onClick && item.onClick();
+                    if (item.onClick) {
+                      e.preventDefault();
+                      item.onClick && item.onClick();
+                    }
                   }}
-                  href={item.href}
+                  href={`${item.href}`}
                 >
                   {item.label}
                 </a>
