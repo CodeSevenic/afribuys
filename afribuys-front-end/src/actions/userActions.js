@@ -88,10 +88,15 @@ export const addOrder = (payload) => {
 export const getOrders = () => {
   return async (dispatch) => {
     try {
-      const res = await axiosInstance.post(`/getOrders`);
+      const res = await axiosInstance.get(`/getOrders`);
       dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
       if (res.status === 200) {
         console.log(res);
+        const { orders } = res.data;
+        dispatch({
+          type: userConstants.GET_USER_ORDER_SUCCESS,
+          payload: { orders },
+        });
       } else {
         const { error } = res.data;
         dispatch({

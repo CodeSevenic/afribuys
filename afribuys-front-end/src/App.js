@@ -8,6 +8,7 @@ import { isUserLoggedIn, updateCart } from './actions/actionsIndex';
 import ProductDetailsPage from './containers/ProductDetailsPage/ProductDetailsPage';
 import CartPage from './containers/CartPage/CartPage';
 import CheckoutPage from './containers/CheckoutPage/CheckoutPage';
+import OrderPage from './containers/OrderPage/OrderPage';
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -30,7 +31,11 @@ function App() {
           <Route path="/" exact component={HomePage} />
           <Route path="/cart" component={CartPage} />
           <Route path="/checkout" component={CheckoutPage} />
-          <Route path="/:productSlug/:productId/p" component={ProductDetailsPage} />
+          <Route path="/account/orders" component={OrderPage} />
+          <Route
+            path="/:productSlug/:productId/p"
+            component={ProductDetailsPage}
+          />
           <Route path="/:slug" component={ProductListPage} />
         </Switch>
       </Router>
