@@ -15,6 +15,7 @@ const initialDataRoutes = require('./routes/admin/initialDataRoute');
 const pageRoutes = require('./routes/admin/pageRoutes');
 const addressRoutes = require('./routes/addressRoutes');
 const orderRoutes = require('./routes/orderRouters');
+const orderAdminRoutes = require('./routes/admin/orderAdminRoutes');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,6 +52,7 @@ app.use('/api', initialDataRoutes);
 app.use('/api', pageRoutes);
 app.use('/api', addressRoutes);
 app.use('/api', orderRoutes);
+app.use('/api', orderAdminRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);

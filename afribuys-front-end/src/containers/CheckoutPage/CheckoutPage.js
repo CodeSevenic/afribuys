@@ -101,6 +101,7 @@ const CheckoutPage = (props) => {
       totalAmount,
       items,
       paymentStatus: 'pending',
+      paymentType: 'cod',
     };
     console.log(payload);
     dispatch(addOrder(payload));

@@ -5,7 +5,9 @@ exports.updateOrder = (req, res) => {
     { user: req.body.userId, 'orderStatus.type': req.body.type },
     {
       $set: {
-        'orderStatus.$': [{ date: new Date(), isCompleted: true }],
+        'orderStatus.$': [
+          { type: req.body.type, date: new Date(), isCompleted: true },
+        ],
       },
     }
   ).exec((error, order) => {
