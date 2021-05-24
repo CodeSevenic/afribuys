@@ -84,3 +84,23 @@ export const addOrder = (payload) => {
     }
   };
 };
+
+export const getOrders = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosInstance.post(`/getOrders`);
+      dispatch({ type: userConstants.GET_USER_ORDER_REQUEST });
+      if (res.status === 200) {
+        console.log(res);
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userConstants.GET_USER_ORDER_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
