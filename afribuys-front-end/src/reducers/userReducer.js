@@ -27,7 +27,7 @@ export const userReducer = (state = initialState, action) => {
     case userConstants.GET_USER_ORDER_REQUEST:
       return { ...state, orderFetching: true };
     case userConstants.GET_USER_ORDER_SUCCESS:
-      return { ...state, orderFetching: false };
+      return { ...state, orders: action.payload.orders, orderFetching: false };
     case userConstants.GET_USER_ORDER_FAILURE:
       return { ...state, error: action.payload.error, orderFetching: false };
 
