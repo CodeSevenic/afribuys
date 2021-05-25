@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { authConstants } from '../../../admin-app/src/actions/constants';
+import { authConstants } from '../actions/constants';
 import store from '../store/store';
 import { api } from '../urlConfig';
 
