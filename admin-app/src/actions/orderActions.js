@@ -5,7 +5,7 @@ export const getCustomerOrders = () => {
   return async (dispatch) => {
     dispatch({ type: orderConstants.GET_CUSTOMER_ORDER_REQUEST });
     try {
-      const res = await axiosInstance('/order/getCustomerOrders');
+      const res = await axiosInstance.post('/order/getCustomerOrders');
       if (res.status === 200) {
         const { orders } = res.data;
         dispatch({
