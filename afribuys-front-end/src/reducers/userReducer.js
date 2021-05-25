@@ -3,6 +3,7 @@ import { userConstants } from '../actions/constants';
 const initialState = {
   address: [],
   orders: [],
+  orderDetails: {},
   error: null,
   loading: false,
   orderFetching: false,
@@ -30,6 +31,13 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, orders: action.payload.orders, orderFetching: false };
     case userConstants.GET_USER_ORDER_FAILURE:
       return { ...state, error: action.payload.error, orderFetching: false };
+
+    case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
+      return;
+    case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
+      return { ...state, orderDetails: action.payload.order };
+    case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
+      return;
 
     default:
       return state;

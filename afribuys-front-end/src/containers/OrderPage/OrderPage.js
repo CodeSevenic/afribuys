@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getOrders } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import { Breed } from '../../components/MaterialUI/MaterialUI';
@@ -33,7 +34,10 @@ const OrderPage = () => {
               key={index}
               style={{ maxWidth: '1200px', margin: '5px auto' }}
             >
-              <div className="orderItemContainer">
+              <Link
+                to={`/order_details/${order._id}`}
+                className="orderItemContainer"
+              >
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
@@ -48,7 +52,7 @@ const OrderPage = () => {
                   <div className="orderPrice">R {item.payablePrice}</div>
                   <div>{order.paymentStatus}</div>
                 </div>
-              </div>
+              </Link>
             </Card>
           ));
         })}
