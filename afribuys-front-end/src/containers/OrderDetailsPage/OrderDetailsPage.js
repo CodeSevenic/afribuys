@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOrder } from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import Card from '../../components/UI/Card/Card';
+import './OrderDetailsPage.css';
 
 const OrderDetailsPage = (props) => {
   const dispatch = useDispatch();
