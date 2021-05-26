@@ -22,8 +22,25 @@ const Header = (props) => {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
+  const userSignup = () => {
+    console.log({ firstName, lastName, email, password });
+    const user = { firstName, lastName, email, password };
+    if (
+      firstName === '' ||
+      lastName === '' ||
+      email === '' ||
+      password === ''
+    ) {
+      return;
+    }
+  };
+
   const userLogin = () => {
-    dispatch(login({ email, password }));
+    if (signup) {
+      userSignup();
+    } else {
+      dispatch(login({ email, password }));
+    }
   };
 
   const logout = () => {
@@ -152,7 +169,7 @@ const Header = (props) => {
                   // rightElement={<a href="#">Forgot?</a>}
                 />
                 <MaterialButton
-                  title="Login"
+                  title={signup ? 'Register' : 'Login'}
                   bgColor="#fb641b"
                   textColor="#ffffff"
                   style={{
