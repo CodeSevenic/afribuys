@@ -9,13 +9,7 @@ import Card from '../../../components/UI/Card/Card';
 
 const ProductStore = (props) => {
   const product = useSelector((state) => state.product);
-  const [priceRange, setPriceRange] = useState({
-    under5k: 5000,
-    under10k: 10000,
-    under15k: 15000,
-    under20k: 20000,
-    under30k: 30000,
-  });
+  const priceRange = product.priceRange;
   const dispatch = useDispatch();
 
   useEffect(() => {
