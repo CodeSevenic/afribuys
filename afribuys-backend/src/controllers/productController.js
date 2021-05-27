@@ -98,14 +98,17 @@ exports.getProductDetailsById = (req, res) => {
 };
 
 exports.deleteProductById = (req, res) => {
-  console.log({ body: req.body });
   const { productId } = req.body.payload;
-  Product.deleteOne({ _id: productId }).exec((error, result) => {
-    if (error) return res.status(400).json({ error });
-    if (result) {
-      res.status(202).json({ result });
-    }
-  });
+  if (productId) {
+    Product.deleteOne({ _id: productId }).exec((error, result) => {
+      if (error) return res.status(400).json({ error });
+      if (result) {
+        res.status(202).json({ result });
+      }
+    });
+  } else {
+    res.status(400).json({ error: 'Params required' });
+  }
 };
 
 exports.getProducts = async (req, res) => {
