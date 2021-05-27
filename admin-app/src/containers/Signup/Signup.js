@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import Input from '../../components/UI/Input/Input';
@@ -11,11 +11,19 @@ const Signup = () => {
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const loginState = useSelector((state) => state.loginState);
   const user = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!user.loading) {
+      setName('');
+      setSurname('');
+      setEmail('');
+      setPassword('');
+    }
+  }, [user.loading]);
 
   const userSignup = (e) => {
     e.preventDefault();
