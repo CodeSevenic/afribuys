@@ -5,7 +5,7 @@ const getProducts = () => {
   return async (dispatch) => {
     try {
       dispatch({ type: productConstants.GET_ALL_PRODUCTS_REQUEST });
-      const res = await axiosInstance.get(`product/getProducts`);
+      const res = await axiosInstance.post(`product/getProducts`);
       if (res.status === 200) {
         const { products } = res.data;
         dispatch({
