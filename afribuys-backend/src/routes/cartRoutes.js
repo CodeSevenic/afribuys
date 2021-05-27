@@ -6,6 +6,7 @@ const {
 const {
   addItemToCart,
   getCartItems,
+  removeCartItems,
 } = require('../controllers/cartController');
 const router = express.Router();
 
@@ -16,5 +17,11 @@ router.post(
   addItemToCart
 );
 router.post('/user/getCartItems', requireSignin, userMiddleware, getCartItems);
+router.post(
+  '/user/cart/removeItem',
+  requireSignin,
+  userMiddleware,
+  removeCartItems
+);
 
 module.exports = router;
