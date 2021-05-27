@@ -16,8 +16,8 @@ import Cart from '../../components/UI/Cart';
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
   const [signup, setSignup] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = useSelector((state) => state.auth);
@@ -25,14 +25,9 @@ const Header = (props) => {
   const dispatch = useDispatch();
 
   const userSignup = () => {
-    console.log({ firstName, lastName, email, password });
-    const user = { firstName, lastName, email, password };
-    if (
-      firstName === '' ||
-      lastName === '' ||
-      email === '' ||
-      password === ''
-    ) {
+    console.log({ name, surname, email, password });
+    const user = { name, surname, email, password };
+    if (name === '' || surname === '' || email === '' || password === '') {
       return;
     }
 
@@ -146,16 +141,16 @@ const Header = (props) => {
                   <MaterialInput
                     type="text"
                     label="Enter First Name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 )}
                 {signup && (
                   <MaterialInput
                     type="text"
                     label="Enter Last Name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
                   />
                 )}
                 <MaterialInput

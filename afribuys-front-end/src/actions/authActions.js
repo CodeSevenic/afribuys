@@ -1,12 +1,12 @@
 import axios from '../helpers/axios';
 import { authConstants, cartConstants } from './constants';
 
-// new update signup action
 export const signup = (user) => {
   return async (dispatch) => {
+    let res;
     try {
       dispatch({ type: authConstants.SIGNUP_REQUEST });
-      const res = await axios.post('/signup', user);
+      res = await axios.post(`/signup`, user);
       if (res.status === 201) {
         dispatch({ type: authConstants.SIGNUP_SUCCESS });
         const { token, user } = res.data;
@@ -20,10 +20,15 @@ export const signup = (user) => {
           },
         });
       } else {
-        dispatch({ type: authConstants.SIGNUP_FAILURE });
+        const { error } = res.data;
+        dispatch({ type: authConstants.SIGNUP_FAILURE, payload: { error } });
       }
     } catch (error) {
-      console.log(error);
+      const { data } = error.response;
+      dispatch({
+        type: authConstants.SIGNUP_FAILURE,
+        payload: { error: data.error },
+      });
     }
   };
 };

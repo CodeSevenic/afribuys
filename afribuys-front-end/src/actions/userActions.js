@@ -119,6 +119,7 @@ export const getOrder = (payload) => {
       if (res.status === 200) {
         console.log(res);
         const { order } = res.data;
+        console.log('ORDER: ', { order });
         dispatch({
           type: userConstants.GET_USER_ORDER_DETAILS_SUCCESS,
           payload: { order },

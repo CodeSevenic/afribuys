@@ -16,9 +16,11 @@ const OrderDetailsPage = (props) => {
     };
     dispatch(getOrder(payload));
   }, []);
+
   if (!(orderDetails && orderDetails.address)) {
-    return null;
+    return <Layout></Layout>;
   }
+
   return (
     <Layout>
       <div

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, getCartItems } from '../../actions/actionsIndex';
+import {
+  addToCart,
+  getCartItems,
+  removeCartItem,
+} from '../../actions/actionsIndex';
 import Layout from '../../components/Layout/Layout';
 import { MaterialButton } from '../../components/MaterialUI/MaterialUI';
 import PriceDetails from '../../components/PriceDetails/PriceDetails';
@@ -38,6 +42,10 @@ const CartPage = (props) => {
     dispatch(addToCart({ _id, name, price, img }, -1));
   };
 
+  const onRemoveCartItem = (_id) => {
+    dispatch(removeCartItem({ productId: _id }));
+  };
+
   if (props.onlyCartItems) {
     return (
       <>
@@ -67,6 +75,7 @@ const CartPage = (props) => {
               cartItem={cartItems[key]}
               onQuantityDec={onQuantityDecrement}
               onQuantityInc={onQuantityIncrement}
+              onRemoveCartItem={onRemoveCartItem}
             />
           ))}
 

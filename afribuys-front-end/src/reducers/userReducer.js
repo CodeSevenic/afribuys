@@ -33,11 +33,11 @@ export const userReducer = (state = initialState, action) => {
       return { ...state, error: action.payload.error, orderFetching: false };
 
     case userConstants.GET_USER_ORDER_DETAILS_REQUEST:
-      return;
+      return { ...state, loading: true };
     case userConstants.GET_USER_ORDER_DETAILS_SUCCESS:
-      return { ...state, orderDetails: action.payload.order };
+      return { ...state, loading: false, orderDetails: action.payload.order };
     case userConstants.GET_USER_ORDER_DETAILS_FAILURE:
-      return;
+      return { ...state, loading: false };
 
     default:
       return state;
