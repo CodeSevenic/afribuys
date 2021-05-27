@@ -75,6 +75,7 @@ const MaterialButton = (props) => {
         style={{
           backgroundColor: props.bgColor,
           color: props.textColor,
+          fontSize: props.fontSize,
         }}
         onClick={onClick}
       >
