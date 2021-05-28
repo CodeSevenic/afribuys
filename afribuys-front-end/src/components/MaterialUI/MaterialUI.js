@@ -20,7 +20,7 @@ const Modal = (props) => {
 };
 
 const MaterialInput = (props) => {
-  const [focus, setFocus] = useState(false);
+  const [focus, setFocus] = useState(props.value === '' ? false : true);
   const [touch, setTouch] = useState(false);
 
   return (
@@ -65,9 +65,7 @@ const MaterialInput = (props) => {
             color: 'red',
             fontWeight: 500,
           }}
-        >
-          {`${props.label} is Required`}
-        </div>
+        >{`${props.label} is Required`}</div>
       )}
     </div>
   );
